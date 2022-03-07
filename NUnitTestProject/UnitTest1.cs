@@ -149,9 +149,9 @@ namespace NUnitTestProject
         }
 
         [Test]
-        [TestCase (1,1, ExpectedResult = 1)]
+        [TestCase(1, 1, ExpectedResult = 1)]
         [TestCase(2, 5, ExpectedResult = 32)]
-        [TestCase(3, 8 , ExpectedResult = 6561)]
+        [TestCase(3, 8, ExpectedResult = 6561)]
         [TestCase(11, 0, ExpectedResult = 1)]
         [TestCase(0, 0, ExpectedResult = 1)]
 
@@ -162,7 +162,7 @@ namespace NUnitTestProject
 
         [Test]
         [TestCase(new int[] { 2, 3, 1, 0 }, ExpectedResult = new int[] { 8, 12, 4, 0 })]
-        [TestCase(new int[] { 4,1,1 }, ExpectedResult = new int[] { 12,3,3 })]
+        [TestCase(new int[] { 4, 1, 1 }, ExpectedResult = new int[] { 12, 3, 3 })]
         [TestCase(new int[] { 1, 0, 3, 3, 7, 2, 1 }, ExpectedResult = new int[] { 7, 0, 21, 21, 49, 14, 7 })]
         public static int[] Test14(int[] arr)
         {
@@ -170,7 +170,7 @@ namespace NUnitTestProject
         }
 
         [Test]
-        [TestCase("kalbk","aqldk", ExpectedResult = 3)]
+        [TestCase("kalbk", "aqldk", ExpectedResult = 3)]
         [TestCase("abcde", "abcde", ExpectedResult = 0)]
         [TestCase("lllaq", "llkaq", ExpectedResult = 1)]
         [TestCase("jeldq", "afxtl", ExpectedResult = 5)]
@@ -207,6 +207,93 @@ namespace NUnitTestProject
         public static int Test18(int u)
         {
             return DesafiosEdabit.Factorial(u);
+        }
+
+        //Create a function that takes two numbers as arguments(num, length)
+        //and returns an array of multiples of num until the array length reaches length.
+        [Test]
+        [TestCase(7, 5, ExpectedResult = new int[] { 7, 14, 21, 28, 35 })]
+        [TestCase(12, 10, ExpectedResult = new int[] { 12, 24, 36, 48, 60, 72, 84, 96, 108, 120 })]
+        [TestCase(17, 7, ExpectedResult = new int[] { 17, 34, 51, 68, 85, 102, 119 })]
+        [TestCase(630, 14, ExpectedResult = new int[] { 630, 1260, 1890, 2520, 3150, 3780, 4410, 5040, 5670, 6300, 6930, 7560, 8190, 8820 })]
+        [TestCase(140, 3, ExpectedResult = new int[] { 140, 280, 420 })]
+        [TestCase(7, 8, ExpectedResult = new int[] { 7, 14, 21, 28, 35, 42, 49, 56 })]
+        [TestCase(11, 21, ExpectedResult = new int[] { 11, 22, 33, 44, 55, 66, 77, 88, 99, 110, 121, 132, 143, 154, 165, 176, 187, 198, 209, 220, 231 })]
+
+        public int[] Test19(int num, int length)
+        {
+            //Arrange
+            DesafiosEdabit desafioEdabit = new DesafiosEdabit();
+            int[] respuesta;
+            //Act
+            respuesta = desafioEdabit.MultiplosArray(num, length);
+            //Assert
+            return respuesta;
+        }
+
+        //Create a function that takes a single string as argument and
+        //returns an ordered array containing the indices of all capital letters in the string.
+        [Test]
+        [TestCase("eDaBiT", ExpectedResult = new int[] { 1, 3, 5 })]
+        [TestCase("eQuINoX", ExpectedResult = new int[] { 1, 3, 4, 6 })]
+        [TestCase("determine", ExpectedResult = new int[] { })]
+        [TestCase("STRIKE", ExpectedResult = new int[] { 0, 1, 2, 3, 4, 5 })]
+        [TestCase("sUn", ExpectedResult = new int[] { 1 })]
+        [TestCase("SpiDer", ExpectedResult = new int[] { 0, 3 })]
+        [TestCase("accOmpAnY", ExpectedResult = new int[] { 3, 6, 8 })]
+        [TestCase("@xCE#8S#i*$en", ExpectedResult = new int[] { 2, 3, 6 })]
+        [TestCase("1854036297", ExpectedResult = new int[] { })]
+        [TestCase("Fo?.arg~{86tUx=|OqZ!", ExpectedResult = new int[] { 0, 12, 16, 18 })]
+
+        public int[] Test20(string argument)
+        {
+            //Arrange
+            DesafiosEdabit desafioEdabit = new DesafiosEdabit();
+            int[] respuesta;
+            //Act
+            respuesta = desafioEdabit.GetCapitalLetterIndex(argument);
+            //Assert
+            return respuesta;
+
+        }
+
+        //Given a string, create a function to reverse the case. All lower-cased letters should be upper-cased, and vice versa.
+
+        [Test]
+        [TestCase("HolaA", ExpectedResult = "hOLAa")]
+        [TestCase("ELIAN", ExpectedResult = "elian")]
+        [TestCase("poqwe", ExpectedResult = "POQWE")]
+        [TestCase("LuiS", ExpectedResult = "lUIs")]
+        [TestCase("str333ing", ExpectedResult = "STR333ING")]
+
+        public string Test21(string argument)
+        {
+            //Arrange
+            DesafiosEdabit desafioEdabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = desafioEdabit.reverseString(argument);
+            //Assert
+            return result;
+        }
+
+        //Create a function that takes an array of integers and strings,
+        //converts integers to strings, and returns the array as a string array.
+
+        [Test]
+        [TestCase(new object[] {123,"ABCde"}, ExpectedResult = new string[] {"123","ABCde"})]
+        [TestCase(new object[] {21512,"ASFJH!J#"}, ExpectedResult = new string[] {"21512", "ASFJH!J#" })]
+        [TestCase(new object[] {828184,"HJASFH$$#"}, ExpectedResult = new string[] {"828184", "HJASFH$$#" })]
+        [TestCase(new object[] {0,"ASFHJ#/"}, ExpectedResult = new string[] {"0", "ASFHJ#/" })]
+        public string[] Test22 (object[] argument)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            string[] result;
+            //Act
+            result = desafiosEdabit.ConvertObjectArrayToString(argument);
+            //Assert
+            return result;
         }
     }
 }

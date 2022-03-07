@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -6,7 +7,7 @@ namespace DesafioEdabit
 {
     public class DesafiosEdabit
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
         }
@@ -23,10 +24,10 @@ namespace DesafioEdabit
 
             return false;
         }
-        
+
         public static int FindPerimeter(int length, int width)
         {
-            return length*2 + width*2;
+            return length * 2 + width * 2;
         }
 
         public static int FootballPoints(int wins, int draws, int losses)
@@ -119,7 +120,7 @@ namespace DesafioEdabit
         public static int GetAbsSum(int[] arr)
         {
             int result = 0;
-            foreach(int i in arr)
+            foreach (int i in arr)
             {
                 result += Math.Abs(i);
             }
@@ -136,7 +137,7 @@ namespace DesafioEdabit
         {
             int[] result = new int[arr.Length];
 
-            for(int i=0; i<arr.Length ; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 result[i] = arr[i] * arr.Length;
             }
@@ -191,11 +192,79 @@ namespace DesafioEdabit
 
             int result = 1;
 
-            for(int i = 1; i <= num; i++)
+            for (int i = 1; i <= num; i++)
             {
-                result = result*i;
+                result = result * i;
+            }
+            return result;
+        }
+
+        public int[] MultiplosArray(int num, int length)
+        {
+
+            int[] resultado = new int[length];
+            for (int i = 0; i < resultado.Length; i++)
+            {
+                resultado[i] = num * (i + 1);
+            }
+            return resultado;
+        }
+
+        public int[] GetCapitalLetterIndex(string palabra)
+        {
+            char[] charArray = palabra.ToCharArray();
+            List<int> indexes = new List<int>();
+
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if (Char.IsUpper(charArray[i]))
+                    indexes.Add(i);
+            }
+
+            return indexes.ToArray();
+        }
+
+        public string reverseString(string palabra)
+        {
+            char[] arrayPalabra = palabra.ToCharArray();
+
+            for(int i = 0; i < arrayPalabra.Length; i++) {
+                if (Char.IsUpper(arrayPalabra[i]))
+                {
+                    arrayPalabra[i] = Char.ToLower(arrayPalabra[i]);
+                }else if (Char.IsLower(arrayPalabra[i]))
+                    arrayPalabra[i] = Char.ToUpper(arrayPalabra[i]);               
+            }
+
+            return new string (arrayPalabra);
+        }
+
+        public string[] ConvertObjectArrayToString(object[] array)
+        {
+            string[] result = new string[array.Length];
+
+            for (int i=0; i<array.Length; i++)
+            {
+                var item = array[i];
+                if (item.GetType() == typeof(int))
+                {
+                    result[i] = item.ToString();
+                }
+                else
+                {
+                    result[i] = item.ToString();
+                }
             }
             return result;
         }
     }
 }
+/*
+Type t = typeof(obj1);
+if (t == typeof(int))
+    // Some code here
+
+if (obj1.GetType() == typeof(int))
+    // Some code here
+
+*/
