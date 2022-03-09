@@ -295,6 +295,161 @@ namespace NUnitTestProject
             //Assert
             return result;
         }
+
+        [Test]
+        [TestCase("asdbombasd", ExpectedResult = "Duck!")]
+        [TestCase("asdBOMBasd", ExpectedResult = "Duck!")]
+        [TestCase("asdbmbasd", ExpectedResult = "There is no bomb here")]
+        [TestCase("#$FbOmBFSHJ", ExpectedResult = "Duck!")]
+        [TestCase("012KASHED", ExpectedResult = "There is no bomb here")]
+
+        public string Test23 (string arg)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = desafiosEdabit.bomba(arg);
+            //Assert
+            return result;
+        }
+
+//        In this challenge, you must verify the equality of two different values given the parameters a and b.
+
+//        Both the value and type of the parameters need to be equal. The possible types of the given parameters are:
+
+//        Numbers
+//        Strings
+//        Booleans (false or true)
+//        What have you learned so far that will permit you to do two different checks (value and type) with a single statement?
+
+//        Implement a function that returns true if the parameters are equal, and false if they are not.
+
+        [Test]
+        [TestCase(1,"Elian", ExpectedResult = false)]
+        [TestCase(false, false, ExpectedResult = true)]
+        [TestCase(true, false, ExpectedResult = false)]
+        [TestCase("Luis", true, ExpectedResult = false)]
+        [TestCase(10, 11, ExpectedResult = false)]
+        [TestCase(55, 55, ExpectedResult = true)]
+        [TestCase(null, 55, ExpectedResult = false)]
+        [TestCase(null, null, ExpectedResult = true)]
+
+
+        public bool Test24(object a, object b)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            bool result;
+            //Act
+            result = desafiosEdabit.CompareObjects(a, b);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        public void Test25()
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            //Act
+            //Assert
+            Assert.AreEqual(new double[] { 4, 56, 214 }, desafiosEdabit.doubleArray(new double[][] { new double[] { 4, 2, 1 }, new double[] { 56, 3, 4 }, new double[] { 1, 99, 2, 214 } }));
+            Assert.AreEqual(new double[] { 242, 44, 123 }, desafiosEdabit.doubleArray(new double[][] { new double[] { 11, 2, 242 }, new double[] { 44, 2, 44 }, new double[] { 1, 2, 33, 123 } }));
+            Assert.AreEqual(new double[] { 4, 77, 124 }, desafiosEdabit.doubleArray(new double[][] { new double[] { 2, 1, 4 }, new double[] { 77, 22, 4 }, new double[] { 4, 77, 124 } }));     
+        }
+
+        [Test]
+        [TestCase(2, ExpectedResult = 1)]
+        [TestCase(3, ExpectedResult = 7)]
+        [TestCase(10, ExpectedResult = 6)]
+        [TestCase(6, ExpectedResult = 8)]
+        [TestCase(345, ExpectedResult = 125)]
+        [TestCase(72, ExpectedResult = 22)]
+        [TestCase(72, ExpectedResult = 22)]
+        [TestCase(1, ExpectedResult = 0)]
+        [TestCase(0, ExpectedResult = 0)]
+        public int Test26(int num)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            //Act
+            int result;
+            //Assert
+            result = desafiosEdabit.CollatzConjecture(num);
+            return result;
+        }
+
+        [Test]
+        [TestCase("a", ExpectedResult = 65)]
+        [TestCase("c", ExpectedResult = 67)]
+        [TestCase("2", ExpectedResult = 50)]
+        [TestCase("C", ExpectedResult = 99)]
+
+        public int Test27(char c)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            int result;
+            //Act
+            result = desafiosEdabit.Counterpart(c);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        [TestCase(1234, ExpectedResult = "43211234")]
+        [TestCase(4321, ExpectedResult = "12344321")]
+        [TestCase(98, ExpectedResult = "8998")]
+        [TestCase(5, ExpectedResult = "55")]
+        [TestCase(141, ExpectedResult = "141141")]
+        [TestCase(777, ExpectedResult = "777777")]
+
+        public string Test28(int num)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = desafiosEdabit.ReverseAndNot(num);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        [TestCase("h*l* L**s", "oaui", ExpectedResult = "hola Luis")]
+        [TestCase("*bcd*fg", "ae" , ExpectedResult = "abcdefg")]
+        [TestCase("S* h* *nc*ntr*d* *n*", "eaeoaoua" , ExpectedResult = "Se ha encontrado una")]
+
+        public string Test29(string censurado, string vocales)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = desafiosEdabit.Censura(censurado, vocales);
+            //Assert
+            return result;
+
+        }
+
+        [Test]
+        [TestCase("12/03/2020", ExpectedResult = "19/03/2020")]
+        [TestCase("21/12/1989", ExpectedResult = "28/12/1989")]
+        [TestCase("01/01/2000", ExpectedResult = "08/01/2000")]
+
+        public string Test30 (string date)
+        {
+            //Arrange
+            DesafiosEdabit desafiosEdabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = desafiosEdabit.AWeekLater(date);
+            //Assert
+            return result;
+        }
+
+
     }
 }
 

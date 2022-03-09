@@ -257,7 +257,120 @@ namespace DesafioEdabit
             }
             return result;
         }
+
+        public string bomba(string arg)
+        {
+            arg = arg.ToUpper();
+            return arg.Contains("BOMB") ? "Duck!" : "There is no bomb here";
+        }
+
+        public bool CompareObjects(object a, object b)
+        {
+            return Object.Equals(a, b);
+        }
+
+        public double[] doubleArray(double[][] muchosNumeros)
+        {
+            double[] resultado = new double[muchosNumeros.Length];
+            int i = 0, f = 0;
+            for(i = 0; i< muchosNumeros.Length; i++)
+            {
+                double mayor = muchosNumeros[i][0];                
+                for (f = 0; f < muchosNumeros[i].Length; f++)
+                {
+                    if ( mayor < muchosNumeros[i][f] ) {
+                        mayor = muchosNumeros[i][f];
+                    }                
+                }
+                resultado[i] = mayor;
+            }
+            return resultado;
+        }
+
+        public int CollatzConjecture(int num, int counter = 0)
+        {
+            if (num == 1 || num == 0)
+                return counter;
+
+            if (num % 2 == 0)
+            {
+                counter++;
+                return CollatzConjecture(num / 2, counter);
+            }
+            else
+            {
+                counter++;
+                return CollatzConjecture(num * 3 + 1, counter);
+            }
+        }
+
+        public int Counterpart(char c)
+        {
+
+            if (!Char.IsLetter(c))
+            {
+                return (int)c;
+            }
+            if (Char.IsUpper(c))
+            {
+                return (int)Char.ToLower(c);
+            }
+            else
+            {
+                return (int)Char.ToUpper(c);
+            }
+            /*
+
+            //Funciona pero es feo
+
+            int result = (int)c;
+            if (result > 64 && result < 91)
+            {
+                c = Char.ToLower(c);
+                return (int)c;
+            }else if ( result >96 && result < 123)
+            {
+                c = Char.ToUpper(c); ;
+                return (int)c;
+            }
+            return (int)c;*/
+        }
+
+        public string ReverseAndNot(int num)
+        {
+            char[] numStringRevChar = num.ToString().ToCharArray();
+            Array.Reverse(numStringRevChar);
+            return String.Concat(new string(numStringRevChar), num.ToString());
+        }
+
+        public string Censura(string censurado, string vocales)
+        {
+            char[] arrayVocales = vocales.ToCharArray();
+            char[] arrayCensurado = censurado.ToCharArray();
+            int i = 0;
+            for(int f = 0; f < arrayCensurado.Length; f++)
+            {
+                if (arrayCensurado[f].Equals('*'))
+                {
+                    arrayCensurado[f] = arrayVocales[i];
+                    i++;
+                }
+            }
+            return new string(arrayCensurado);
+
+        }
+
+        public string AWeekLater(string date)
+        {
+            DateTime dateFormat = DateTime.Parse(date);
+            return dateFormat.AddDays(7).ToString("dd/MM/yyyy");
+        }
     }
+
+    /*
+    DateTime fecharegistro = DateTime.Parse("04/05/2018 8:34:01"); //obtenemos este valor de una bbdd
+    var horas = (DateTime.Now-fecharegistro).TotalHours;
+    */
 }
 /*
 Type t = typeof(obj1);
