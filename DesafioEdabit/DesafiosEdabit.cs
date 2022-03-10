@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 
 namespace DesafioEdabit
 {
@@ -228,22 +228,24 @@ namespace DesafioEdabit
         {
             char[] arrayPalabra = palabra.ToCharArray();
 
-            for(int i = 0; i < arrayPalabra.Length; i++) {
+            for (int i = 0; i < arrayPalabra.Length; i++)
+            {
                 if (Char.IsUpper(arrayPalabra[i]))
                 {
                     arrayPalabra[i] = Char.ToLower(arrayPalabra[i]);
-                }else if (Char.IsLower(arrayPalabra[i]))
-                    arrayPalabra[i] = Char.ToUpper(arrayPalabra[i]);               
+                }
+                else if (Char.IsLower(arrayPalabra[i]))
+                    arrayPalabra[i] = Char.ToUpper(arrayPalabra[i]);
             }
 
-            return new string (arrayPalabra);
+            return new string(arrayPalabra);
         }
 
         public string[] ConvertObjectArrayToString(object[] array)
         {
             string[] result = new string[array.Length];
 
-            for (int i=0; i<array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 var item = array[i];
                 if (item.GetType() == typeof(int))
@@ -273,14 +275,15 @@ namespace DesafioEdabit
         {
             double[] resultado = new double[muchosNumeros.Length];
             int i = 0, f = 0;
-            for(i = 0; i< muchosNumeros.Length; i++)
+            for (i = 0; i < muchosNumeros.Length; i++)
             {
-                double mayor = muchosNumeros[i][0];                
+                double mayor = muchosNumeros[i][0];
                 for (f = 0; f < muchosNumeros[i].Length; f++)
                 {
-                    if ( mayor < muchosNumeros[i][f] ) {
+                    if (mayor < muchosNumeros[i][f])
+                    {
                         mayor = muchosNumeros[i][f];
-                    }                
+                    }
                 }
                 resultado[i] = mayor;
             }
@@ -348,7 +351,7 @@ namespace DesafioEdabit
             char[] arrayVocales = vocales.ToCharArray();
             char[] arrayCensurado = censurado.ToCharArray();
             int i = 0;
-            for(int f = 0; f < arrayCensurado.Length; f++)
+            for (int f = 0; f < arrayCensurado.Length; f++)
             {
                 if (arrayCensurado[f].Equals('*'))
                 {
@@ -365,19 +368,115 @@ namespace DesafioEdabit
             DateTime dateFormat = DateTime.Parse(date);
             return dateFormat.AddDays(7).ToString("dd/MM/yyyy");
         }
+
+        public string ImaginarCoding(int[] questions, int total)
+        {
+
+            if(total<= 120 && questions.Length == 8 && questions.Sum() <= 120)
+            {
+
+                int tiempo = 0;
+                for(int i = 0; i < questions.Length; i++)
+                {
+                    if(i % 2 == 0)
+                    {
+                        tiempo += 5;
+                    }
+
+                    if (questions[i] > tiempo)
+                    {
+                        return "disqualified";
+                    }
+                }
+                return "qualified";
+            }
+            return "disqualified";
+        }
+
+        public bool ConsecutiveNumbers(int[] array)
+        {
+            Array.Sort(array);
+            int max = array.Max();
+            int min = array.Min();
+
+            int diff = Math.Abs(max - min) + 1;
+
+            return (diff == array.Length);
+
+        }
+
+        public bool Smooth(string smooth)
+        { 
+            smooth = smooth.ToUpper();
+            string[] splited = smooth.Split(" ");
+            for(int i = 0; i < splited.Length-1; i++)
+            {
+                int LargoPalabra = splited[i].Length;
+                if(splited[i][LargoPalabra-1] != splited[i+1][0])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public int LegendreFormula(int p, int n)
+        {
+            if (p > n)
+                return 0;
+
+            bool stay = true;
+            int counter = 1;
+            double result = 0;
+            double pow = 0;
+
+            while (stay)
+            {
+                pow = Math.Pow((double)p, (double)counter);
+                if (pow > n)
+                {
+                    stay = false;
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+
+            double factor;
+
+            for (int i = 1; i <= counter; i++)
+            {
+                pow = Math.Pow((double)p, (double)i);
+                factor = Math.Floor(n / pow);
+                result += factor;
+            }
+
+            return (int)result;
+        }
+
+        public bool Hex(string hex)
+        {
+
+            /*if(hex[0] != '*' || hex.Length != 7)
+            {
+                return false;
+            }
+
+            for(int i = 1; i<= 7; i++)
+            {
+                if (!((int)hex[i] > 47 && (int)hex[i] <58) || 
+                    !((int)hex[i] > 64 && (int)hex[i] < 91)|| 
+                    !((int)hex[i] > 96 && (int)hex[i] < 123))
+                {
+                    return false;    
+                }
+
+            }
+            return true;*/
+
+            return Regex.Match(hex, "^#[0-9a-fA-F]{6}$").Success;
+        }
     }
 
-    /*
-    DateTime fecharegistro = DateTime.Parse("04/05/2018 8:34:01"); //obtenemos este valor de una bbdd
-    var horas = (DateTime.Now-fecharegistro).TotalHours;
-    */
 }
-/*
-Type t = typeof(obj1);
-if (t == typeof(int))
-    // Some code here
-
-if (obj1.GetType() == typeof(int))
-    // Some code here
-
-*/

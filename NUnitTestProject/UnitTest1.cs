@@ -448,8 +448,121 @@ namespace NUnitTestProject
             //Assert
             return result;
         }
+        
+        [Test]
+        [TestCase(new int[] { 5, 5, 10, 10, 15, 15, 20, 20 }, 120, ExpectedResult = "qualified")]
+        [TestCase(new int[] { 2, 3, 8, 6, 5, 12, 10, 18 }, 120, ExpectedResult = "qualified")]
+        [TestCase(new int[] { 2, 3, 8, 6, 5, 12, 10, 18 }, 64, ExpectedResult = "qualified")]
+        [TestCase(new int[] { 5, 5, 10, 10, 25, 15, 20, 20 }, 120, ExpectedResult = "disqualified")]
+        [TestCase(new int[] { 5, 5, 10, 10, 15, 15, 20 }, 120, ExpectedResult = "disqualified")]
+        [TestCase(new int[] { 5, 5, 10, 10, 15, 15, 20, 20 }, 130, ExpectedResult = "disqualified")]
+        [TestCase(new int[] { 5, 5, 10, 10, 15, 20, 50 }, 160, ExpectedResult = "disqualified")]
+        [TestCase(new int[] { 5, 5, 10, 10, 15, 15, 40 }, 120, ExpectedResult = "disqualified")]
+        [TestCase(new int[] { 10, 10, 15, 15, 20, 20 }, 150, ExpectedResult = "disqualified")]
+        [TestCase(new int[] { 5, 5, 10, 20, 15, 15, 20, 20 }, 140, ExpectedResult = "disqualified")]
 
+        public string Test31(int[] questions, int total)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = edabit.ImaginarCoding(questions, total);
+            //Assert
+            return result;
+        }
 
+        [Test]
+        [TestCase(new int[] { 5, 1, 4, 3, 2 }, ExpectedResult = true)]
+        [TestCase(new int[] { 55, 59, 58, 56, 57 }, ExpectedResult = true)]
+        [TestCase(new int[] { -3, -2, -1, 1, 0 }, ExpectedResult = true)]
+        [TestCase(new int[] { 5, 1, 4, 3, 2, 8 }, ExpectedResult = false)]
+        [TestCase(new int[] { 5, 6, 7, 8, 9, 9 }, ExpectedResult = false)]
+        [TestCase(new int[] { 5, 3 }, ExpectedResult = false)]
+
+        public bool Test32(int[] array)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            bool result;
+            //Act
+            result = edabit.ConsecutiveNumbers(array);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        [TestCase("Marta appreciated deep perpendicular right trapezoids", ExpectedResult = true)]
+        [TestCase("Someone is outside the doorway", ExpectedResult = false)]
+        [TestCase("She eats super righteously", ExpectedResult = true)]
+        [TestCase("Ben naps so often", ExpectedResult = true)]
+        [TestCase("Cute triangles are cute", ExpectedResult = false)]
+        [TestCase("Mad dislikes sharp pointy yoyos", ExpectedResult = true)]
+        [TestCase("Rita asks Sam mean numbered dilemmas", ExpectedResult = true)]
+        [TestCase("Marigold daffodils streaming happily.", ExpectedResult = false)]
+        [TestCase("Simply wonderful laughing.", ExpectedResult = false)]
+
+        public bool Test33(string smooth)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            bool result;
+            //Act
+            result = edabit.Smooth(smooth);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        [TestCase(5, 100, ExpectedResult = 24)]
+        [TestCase(2, 128, ExpectedResult = 127)]
+        [TestCase(3, 50, ExpectedResult = 22)]
+        [TestCase(7, 98, ExpectedResult = 16)]
+        [TestCase(11, 500, ExpectedResult = 49)]
+        [TestCase(3, 600, ExpectedResult = 297)]
+        [TestCase(7, 6, ExpectedResult = 0)]
+        [TestCase(3, 1385, ExpectedResult = 688)]
+        [TestCase(5, 4324, ExpectedResult = 1077)]
+        [TestCase(2, 8663, ExpectedResult = 8655)]
+
+        public int Test34(int p, int n)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            int result;
+            //Act
+            result = edabit.LegendreFormula(p, n);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        [TestCase("#CD5C5C", ExpectedResult = true)]
+        [TestCase("#EAECEE", ExpectedResult = true)]
+        [TestCase("#eaecee", ExpectedResult = true)]
+        [TestCase("#CD5C58C", ExpectedResult = false, Description = "Length exceeds 6.")]
+        [TestCase("#CD5C5Z", ExpectedResult = false, Description = "Alphabetic characters not in A-F.")]
+        [TestCase("#CD5C&C", ExpectedResult = false, Description = "Unacceptable character.")]
+        [TestCase("CD5C5C", ExpectedResult = false, Description = "Does not start with #.")]
+        [TestCase("#123CCCD", ExpectedResult = false)]
+        [TestCase("#0", ExpectedResult = false)]
+        [TestCase("#987654", ExpectedResult = true)]
+        [TestCase("#9876543", ExpectedResult = false, Description = "Length exceeds 6.")]
+        [TestCase("#CCCCCC", ExpectedResult = true)]
+        [TestCase("#ZCCZCC", ExpectedResult = false, Description = "Not acceptable alphabetic characters.")]
+        [TestCase("#Z88Z99", ExpectedResult = false, Description = "Not acceptable alphabetic characters.")]
+        [TestCase("#Z88!99", ExpectedResult = false, Description = "Unacceptable character.")]
+
+        public bool Test35(string hex)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            bool result;
+            //Act
+            result = edabit.Hex(hex);
+            //Assert
+            return result;
+        }
     }
 }
 
