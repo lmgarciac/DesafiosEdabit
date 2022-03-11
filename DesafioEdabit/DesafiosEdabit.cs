@@ -477,6 +477,79 @@ namespace DesafioEdabit
 
             return Regex.Match(hex, "^#[0-9a-fA-F]{6}$").Success;
         }
+
+        public string Simplificar(string fraccion)
+        {
+
+            string[] spliteada = fraccion.Split("/");
+            int numerador = int.Parse(spliteada[0]);
+            int denominador = int.Parse(spliteada[1]);
+
+            if (numerador>=denominador && numerador % denominador == 0)
+            {
+                return (numerador / denominador).ToString();
+            }
+
+            int mayor = numerador>denominador ? numerador : denominador;
+
+            for(int i = mayor; i>0; i--)
+            {
+                if(numerador % i == 0 && denominador % i == 0)
+                {
+                    numerador /= i;
+                    denominador /= i;
+                    return (numerador + "/" + denominador);
+                  //  mayor = numerador > denominador ? numerador : denominador;
+                }
+
+            }
+
+
+            return fraccion;
+        }
+
+        public string TrueAlphabeticalOrder(string frase)
+        {
+            string[] fraseSplit = frase.Split(" ");
+
+            frase = frase.Replace(" ","");
+
+            char[] fraseArray = frase.ToArray();
+            Array.Sort(fraseArray);
+
+            List<char> fraseArrayList = fraseArray.ToList<char>();
+
+            int a = 0;
+
+            for (int i = 0; i < fraseSplit.Length; i++)
+            {
+                int b = fraseSplit[i].Length;
+                string replace = new string(fraseArrayList.GetRange(a, b).ToArray());
+                fraseSplit[i] = replace;
+                a += b;
+            }
+
+            string result = String.Join(' ',fraseSplit);
+
+            return result;
+        }
+
+        public int NewDrivingLicence(string me, int agents, string people)
+        {
+            string[] persons = people.Split(' ');
+
+            int antesqueyo = 0;
+            foreach (var person in persons)
+            {
+                if (person[0] < me[0])
+                    antesqueyo++;
+            }
+
+            int multiplicador = (int)Math.Ceiling((double)(antesqueyo+1) / (double)agents);
+
+            return multiplicador * 20;
+        }
+
     }
 
 }

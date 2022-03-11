@@ -563,6 +563,62 @@ namespace NUnitTestProject
             //Assert
             return result;
         }
+
+        [Test]
+        [TestCase("5/7", ExpectedResult = "5/7")]
+        [TestCase("4/6", ExpectedResult = "2/3")]
+        [TestCase("11/10", ExpectedResult = "11/10")]
+        [TestCase("8/4", ExpectedResult = "2")]
+        [TestCase("7/4" , ExpectedResult = "7/4")]
+        [TestCase("6/4", ExpectedResult = "3/2")]
+        [TestCase("300/200", ExpectedResult = "3/2")]
+        [TestCase("50/25", ExpectedResult = "2")]
+        [TestCase("5/45", ExpectedResult = "1/9")]
+
+        public string Test36(string argumento)
+        {
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = edabit.Simplificar(argumento);
+            //Assert
+            return result;
+
+        }
+
+        [Test]
+        [TestCase("hello world", ExpectedResult = "dehll loorw")]
+        [TestCase("edabit is awesome", ExpectedResult = "aabdee ei imosstw")]
+        [TestCase("have a nice day", ExpectedResult = "aaac d eehi nvy")]
+        [TestCase("i love to code", ExpectedResult = "c deei lo ootv")]
+        [TestCase("joshua senoron", ExpectedResult = "aehjnn ooorssu")]        
+        public string Test37(string frase)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            string result;
+            //Act
+            result = edabit.TrueAlphabeticalOrder(frase);
+            //Assert
+            return result;
+        }
+
+        [Test]
+        [TestCase("Zebediah", 1, "Bob Jim Becky Pat", ExpectedResult = 100)]
+        [TestCase("Eric", 2, "Adam Caroline Rebecca Frank", ExpectedResult = 40)]
+        [TestCase("Aaron", 3, "Jane Max Olivia Sam", ExpectedResult = 20)]
+        [TestCase("Zebediah", 4, "Bob Jim Becky Pat", ExpectedResult = 40)]
+        [TestCase("Zebediah", 5, "Bob Jim Becky Pat", ExpectedResult = 20)]
+        public int Test38(string me, int agents, string people)
+        {
+            //Arrange
+            DesafiosEdabit edabit = new DesafiosEdabit();
+            int result;
+            //Act
+            result = edabit.NewDrivingLicence(me, agents, people);
+            //Assert
+            return result;
+        }
     }
 }
 
